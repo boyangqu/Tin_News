@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.laioffer.tinnews">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".TinApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".WebViewActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                //作为task中第一个activity启动
+                <category android:name="android.intent.category.LAUNCHER" />
+                //Category：一个字符串，包含了关于处理该intent的组件的种类的信息。
+            </intent-filter>
+
+            <!-- add new intent filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                //android默认给加上一个CATEGORY_DEFAULT，这样的话如果intent
+                filter中没有android.intent.category.DEFAULT这个category的话，匹配测试就会失败。
+                //所以，如果你的 activity支持接收implicit intent的话就一定要在intent
+                filter中加入android.intent.category.DEFAULT。
+                <data android:mimeType="text/plain" />
+                //text/html的意思是将文件的content-type设置为text/html的形式，浏览器在获取到这种文件时会自动调用html的解析器对文件进行相应的处理。
+                //text/plain的意思是将文件设置为纯文本的形式
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
